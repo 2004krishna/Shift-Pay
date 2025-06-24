@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <span class="big-circle"></span>
+      <img src="img/shape.png" class="square" alt="" />
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">We are here to help you!</h3>
+          <p class="text">
+            Get in touch with us to escalate any existing complaints, and we will ensure a quick resolution
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <img src="img/location.png" class="icon" alt="" />
+              <p>21th Cross Bangalore, 5268018</p>
+            </div>
+            <div class="information">
+              <img src="img/email.png" class="icon" alt="" />
+              <p>shift.pe@gmail.com</p>
+            </div>
+            <div class="information">
+              <img src="img/phone.png" class="icon" alt="" />
+              <p>+919876543201</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class=" circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="index.html" autocomplete="off" method="post" name="google-sheet" id="contact-form">
+            <h3 class="title">Contact us</h3>
+            <div class="input-container">
+              <input type="text" name="name" class="input" required pattern="[A-Za-z]+" />
+              <label for="">Username</label>
+              <span>Username</span>
+              <div class="error-message"></div>
+            </div>
+            <div class="input-container">
+              <input type="tel" name="phone" class="input" required pattern="[0-9]{10}" />
+              <label for="">Phone</label>
+              <span>Phone</span>
+              <div class="error-message"></div>
+            </div>
+            <div class="input-container">
+              <input type="email" name="email" class="input" required />
+              <label for="">Email</label>
+              <span>Email</span>
+              <div class="error-message"></div>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="message" class="input" required></textarea>
+              <label for="">Message</label>
+              <span>Message</span>
+              <div class="error-message"></div>
+            </div>
+            <input type="submit" value="Send" name="submit" class="btn" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const inputs = document.querySelectorAll(".input");
+
+      function focusFunc() {
+        let parent = this.parentNode;
+        parent.classList.add("focus");
+      }
+
+      function blurFunc() {
+        let parent = this.parentNode;
+        if (this.value == "") {
+          parent.classList.remove("focus");
+        }
+      }
+
+      inputs.forEach((input) => {
+        input.addEventListener("focus", focusFunc);
+        input.addEventListener("blur", blurFunc);
+      });
+
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbxx7nRbbgJytuAQTjxwdh7VglRG4XovbqIzTIjyWjLGktItCN6rNs6r30bJI2uxOq-t/exec';
+      const form = document.getElementById('contact-form');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        if (form.checkValidity()) {
+          fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then((response) => alert("You have successfully submitted."))
+            .catch((error) => console.error('Error!', error.message));
+        } else {
+          const errorMessages = form.querySelectorAll('.error-message');
+
+          // Clear previous error messages
+          errorMessages.forEach((errorMessage) => {
+            errorMessage.textContent = '';
+          });
+
+          // Display error messages for invalid fields
+          inputs.forEach((input) => {
+            const parent = input.parentNode;
+            const errorMessage = parent.querySelector('.error-message');
+
+            if (!input.checkValidity()) {
+              parent.classList.add('error');
+              errorMessage.textContent = input.validationMessage;
+            } else {
+              parent.classList.remove('error');
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
