@@ -1,5 +1,4 @@
-Shift-Pay
-I developed to simplify the way shift work is managed and how payments are calculated for workers. The idea came from seeing how complex and error–prone spreadsheets and manual calculations can get when shifts vary, rates change, and overtime needs to be tracked. Using this tool, organizations or team leads can easily input shifts, manage pay-rates, and let the system handle the heavy lifting of calculating total hours, overtime, and pay summaries.
+we developed to simplify the way shift work is managed and how payments are calculated for workers. The idea came from seeing how complex and error–prone spreadsheets and manual calculations can get when shifts vary, rates change, and overtime needs to be tracked. Using this tool, organizations or team leads can easily input shifts, manage pay-rates, and let the system handle the heavy lifting of calculating total hours, overtime, and pay summaries.
 
 In the background the app uses a clean UI based on HTML, CSS, and JavaScript for the front end, and a structured logic layer that handles all the shifting, hours and pay logic. Because shifts often overlap, wages differ depending on time or day, or bonuses/penalties apply, the system is designed to flexibly support a variety of pay scenarios. This makes the whole process faster, more accurate, and transparent for both workers and managers.
 
